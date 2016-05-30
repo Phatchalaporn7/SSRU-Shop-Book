@@ -12,7 +12,7 @@ public class SignUpActivity extends AppCompatActivity {
     //Explicit ประกาศตัวเเปร
     private EditText nameEditText, surEditText, userEditText, passwordEditText;
     private String nameString, surnameString, userString, passwordString;
-
+    private static final String urlUpload = "http://swiftcodingthai.com/ssru/add_user_milk.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,11 +45,17 @@ public class SignUpActivity extends AppCompatActivity {
         } else {
 
             //No Space เงื่อนไขไม่มีช่องว่าง
-        }
+            uploadNewUser();        }
 
 
 
 
     }// clickSign
+
+    private void uploadNewUser() {
+
+
+
+    }//uploadNewUser
 
 }//Main class
