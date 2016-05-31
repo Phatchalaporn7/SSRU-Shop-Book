@@ -1,6 +1,7 @@
 package ssru.phatchalaporn.ssrushopbook;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
@@ -8,6 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
@@ -23,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     private static final String urlJSON ="http://swiftcodingthai.com/ssru/get_user_milk.php";
     private EditText userEditText, passwordEditText;
     private String userString, passwordString;
+    private String[] loginString;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +50,14 @@ public class MainActivity extends AppCompatActivity {
 
     } //Main Method
 
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+
+        deleteAlluserTABLE();
+        synJSONtoSQLite();
+    }
+
     public void clickSignIn(View view) {
 
         userString = userEditText.getText().toString().trim();
@@ -58,10 +69,50 @@ public class MainActivity extends AppCompatActivity {
             MyAlert myAlert = new MyAlert();
             myAlert.myDialog(this, "มีช่องว่าง", "กรุณากรอกทุกช่อง ค่ะ!!");
 
+        } else {
+            CheckUserAnPassword();
+        }
+
+    }// clickSignIn
+
+    private void CheckUserAnPassword() {
+        try {
+
+            SQLiteDatabase sqLiteDatabase = openOrCreateDatabase(MyOpenHelper.database_name,
+                    MODE_PRIVATE, null);
+            Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM userTABLE WHERE User = " + "'" + userString + "'", null);
+            cursor.moveToFirst();
+
+            loginString = new String[cursor.getColumnCount()];
+
+            for (int i=0;i<cursor.getColumnCount(); i++) {
+
+                loginString[i] = cursor.getString(i);
+
+            }//for
+            cursor.close();
+            //Check password
+
+            if (passwordString.equals(loginString[4])) {
+                //password True
+                Toast.makeText(this, "ยินดีต้อนรับ" + loginString[1] + " " + loginString[2],
+                        Toast.LENGTH_SHORT).show();
+            } else {
+                //password False
+                MyAlert myAlert = new MyAlert();
+                myAlert.myDialog(this, "Password False", "Please Try Again Password False");
+            }
+
+
+        } catch (Exception e) {
+
+            MyAlert myAlert = new MyAlert();
+            myAlert.myDialog(this, "ไม่มี User นี้", "ไม่มี" + userString + "ในฐานข้อมูลของเรา");
+
         }
 
 
-    }// clickSignIn
+    }//check
 
 
     private void synJSONtoSQLite() {
