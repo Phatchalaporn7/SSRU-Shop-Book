@@ -7,12 +7,8 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="ssru.phatchalaporn.ssrushopbook.MainActivity">
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!" />
+    tools:context="ssru.phatchalaporn.ssrushopbook.MainActivity"
+    android:background="@drawable/wallpapers_a_00">
 
     <LinearLayout
         android:orientation="horizontal"
@@ -34,5 +30,41 @@
             android:id="@+id/button2"
             android:layout_weight="1"
             android:onClick="clickSignUpMain" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:padding="20dp"
+        android:gravity="center_horizontal"
+        android:background="#50737171">
+
+        <ImageView
+            android:layout_width="@dimen/icon"
+            android:layout_height="@dimen/icon"
+            android:id="@+id/imageView"
+            android:src="@drawable/ssru_new" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/editText5"
+            android:hint="User :"
+            android:inputType="text"
+            android:textColor="@color/text"
+            android:textColorHint="@color/text" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/editText6"
+            android:hint="Password :"
+            android:inputType="textPassword|text"
+            android:textColor="@color/text"
+            android:textColorHint="@color/text" />
+
     </LinearLayout>
 </RelativeLayout>
