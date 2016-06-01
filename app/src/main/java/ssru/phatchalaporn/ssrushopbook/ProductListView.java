@@ -1,7 +1,9 @@
 package ssru.phatchalaporn.ssrushopbook;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -163,7 +165,27 @@ public class ProductListView extends AppCompatActivity {
 
     private void confirmDailog(String nameString, String priceString) {
 
-    }
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setIcon(R.drawable.icon_myaccount);
+        builder.setCancelable(false);
+        builder.setTitle("Confirm Order");
+        builder.setMessage(nameString + " ราคา " + priceString + " THB." + "\n" + "จริงๆ หรือ ?");
+        builder.setNegativeButton("CanCel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface , int i) {
+                dialogInterface.dismiss();
+
+            }
+        });
+
+        builder.setPositiveButton("order", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.dismiss();
+            }
+        });
+
+        }
+    }//confirm
 
 
-}//Main Class
