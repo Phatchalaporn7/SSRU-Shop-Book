@@ -5,7 +5,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
 
 /**
  * Created by Pc on 1/6/2559.
@@ -53,7 +56,9 @@ public class MyAdapter extends BaseAdapter{
         TextView priceTextView = (TextView) view1.findViewById(R.id.textView11);
         priceTextView.setText(priceStrings[i] + "THB.");
 
+        ImageView imageView = (ImageView) view1.findViewById(R.id.imageView2);
 
+        Picasso.with(context).load(coverStrings[i]).resize(120,150).into(imageView);
 
         return view1;
     }
