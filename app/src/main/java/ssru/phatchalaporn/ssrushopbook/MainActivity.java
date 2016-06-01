@@ -95,8 +95,15 @@ public class MainActivity extends AppCompatActivity {
 
             if (passwordString.equals(loginString[4])) {
                 //password True
+
+                Intent intent = new Intent(MainActivity.this, ProductListView.class);
+                intent.putExtra("Login", loginString);
+                startActivity(intent);
+
                 Toast.makeText(this, "ยินดีต้อนรับ" + loginString[1] + " " + loginString[2],
                         Toast.LENGTH_SHORT).show();
+
+                finish();
             } else {
                 //password False
                 MyAlert myAlert = new MyAlert();
