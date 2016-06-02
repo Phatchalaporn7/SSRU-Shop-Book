@@ -44,13 +44,14 @@ public class ProductListView extends AppCompatActivity {
 
         //Bind Widget
         nametextView = (TextView) findViewById(R.id.textView7);
-        surnameTextView = (TextView) findViewById(R.id.textView8);
+        surnameTextView = (TextView) findViewById( R.id.textView8);
         moneyTextView = (TextView) findViewById(R.id.textView9);
         listView = (ListView) findViewById(R.id.listView);
 
         //Receive Value From Intent
         loginStrings = getIntent().getStringArrayExtra("Login");
         moneyString = loginStrings[5];
+
         //show View
         nametextView.setText(loginStrings[1]);
         surnameTextView.setText(loginStrings[2]);
@@ -254,19 +255,18 @@ public class ProductListView extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialogInterface , int i) {
                 dialogInterface.dismiss();
-
             }
         });
-
         builder.setPositiveButton("order", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
 
-                Intent intent = new Intent(ProductListView.this, ReadPDF.class );
+                Intent intent = new Intent(ProductListView.this, MapsActivity.class );
                 intent.putExtra("Login", loginStrings);
                 intent.putExtra("NameBook", nameString);
                 intent.putExtra("PriceBook", priceString);
                 intent.putExtra("urlEBook", eBookString);
+                intent.putExtra("Money", moneyString);
                 startActivity(intent);
                 dialogInterface.dismiss();
             }

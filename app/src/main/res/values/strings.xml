@@ -7,5 +7,6 @@
     <string name="user">User</string>
     <string name="pass">Password</string>
     <string name="promote">สมัครวันนี้ ได้แต้มฟรี 500</string>
-
+    <string name="title_activity_maps">Map</string>
+    <string name="title_map">ระบุที่ส่งของ</string>
 </resources>
